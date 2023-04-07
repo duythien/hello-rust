@@ -37,7 +37,7 @@ jobs:
       - name: Debug
         shell: bash
         run: |
-          ls ../
+          ls -la
       - name: Run tests
         run: cargo test --verbose
   tests-expensive:
