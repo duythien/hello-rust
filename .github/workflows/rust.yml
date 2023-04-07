@@ -36,10 +36,9 @@ jobs:
       - name: Debug
         shell: bash
         run: |
-          ls
           ls ../
       - name: Run tests
-        run: cargo test --verbose
+        run: cd ../ && cargo test --verbose
   tests-expensive:
     needs: build
     runs-on: ubuntu-latest
