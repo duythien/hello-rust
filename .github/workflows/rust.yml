@@ -33,6 +33,11 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: node-template
+      - name: Debug
+        shell: bash
+        run: |
+          ls
+          ls ../
       - name: Run tests
         run: cargo test --verbose
   tests-expensive:
