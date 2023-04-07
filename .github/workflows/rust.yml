@@ -22,9 +22,9 @@ jobs:
         run: cargo build --verbose
       - name: Upload node build
         uses: actions/upload-artifact@v3
-          with:
-            name: node-template
-            path: ./target/debug
+        with:
+          name: node-template
+          path: ./target/debug
   tests:
     needs: build
     runs-on: ubuntu-latest
