@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: cargo build --verbose
       - name: Upload node build
-          uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3
           with:
             name: node-template
             path: ./target/debug
