@@ -48,4 +48,4 @@ jobs:
           name: node-template
           path: ./target/debug
       - name: Run tests expensive
-        run: cargo test -- --ignored --verbose
+        run: cargo test -- --ignored
