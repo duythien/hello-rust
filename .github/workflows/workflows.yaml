@@ -5,36 +5,32 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Install
         run: rustup default nightly-2023-01-01 && rustup target add wasm32-unknown-unknown --toolchain nightly-2023-01-01
       - name: Build
         run: cargo build --verbose
-      - name: Upload node build
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-template
-          path: ./target/debug
   tests:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Download node-template
-        uses: actions/download-artifact@v3
-        with:
-          name: node-template
-          path: ./target/debug
       - name: Run tests
         run: cargo test --verbose
   tests-expensive:
@@ -42,10 +38,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Download node-template
-        uses: actions/download-artifact@v3
-        with:
-          name: node-template
-          path: ./target/debug
       - name: Run tests expensive
         run: cargo test -- --ignored
